@@ -1,0 +1,236 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.ibb.co/SqbNcr1/image.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "เข้าเล่น หรือ สมัครก็ง่ายนิดเดียว",
+            "wrap": true,
+            "weight": "bold",
+            "size": "lg",
+            "color": "#FFD700"
+          },
+          {
+            "type": "text",
+            "text": "สามารถกดปุ่มด้านล่างเพื่อเลือกได้เลยนะคะ",
+            "wrap": true,
+            "size": "sm",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#FFD700",
+            "action": {
+              "type": "uri",
+              "label": "ทางเข้าเล่นหลัก",
+              "uri": "https://pgthai289.net/?openExternalBrowser=1"
+            }
+          },
+          {
+            "type": "button",
+            "style": "secondary",
+            "color": "#000000",
+            "action": {
+              "type": "uri",
+              "label": "สมัครสมาชิก",
+              "uri": "https://pgthai289.net/customer/register/BTAI/?openExternalBrowser=1"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "body": {
+          "backgroundColor": "#5B068C"
+        },
+        "footer": {
+          "backgroundColor": "#5B068C"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.ibb.co/SqbNcr1/image.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "รีวิวถอนได้จริงหลักร้อยหรือล้านก็ไว",
+            "wrap": true,
+            "weight": "bold",
+            "size": "lg",
+            "color": "#FFD700"
+          },
+          {
+            "type": "text",
+            "text": "สามารถกดปุ่มด้านล่างเพื่อดูรีวิวได้เลยค่ะ",
+            "wrap": true,
+            "size": "sm",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#000000",
+            "action": {
+              "type": "message",
+              "label": "รีวิวถอนล่าสุด",
+              "text": "รีวิวถอนล่าสุด"
+            }
+          },
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#FFD700",
+            "action": {
+              "type": "message",
+              "label": "สล็อตแตกดี",
+              "text": "สล็อตแตกดี"
+            }
+          },
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#000000",
+            "action": {
+              "type": "message",
+              "label": "ค่าคอมมิชชั่น",
+              "text": "ค่าคอมมิชชั่น"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "body": {
+          "backgroundColor": "#5B068C"
+        },
+        "footer": {
+          "backgroundColor": "#5B068C"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://i.ibb.co/SqbNcr1/image.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "รวมทีเด็ดจากกูรูชั้นนำ + ติดตามไลฟ์สดเว็บ",
+            "wrap": true,
+            "weight": "bold",
+            "size": "lg",
+            "color": "#FFD700"
+          },
+          {
+            "type": "text",
+            "text": "สามารถกดปุ่มด้านล่างเพื่อรับทีเด็ดได้เลยนะคะ",
+            "wrap": true,
+            "size": "sm",
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#FFD700",
+            "action": {
+              "type": "message",
+              "label": "ทีเด็ดบอล",
+              "text": "ทีเด็ดบอล"
+            }
+          },
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#FFD700",
+            "action": {
+              "type": "message",
+              "label": "หวยวันนี้",
+              "text": "หวย"
+            }
+          },
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#FFD700",
+            "action": {
+              "type": "message",
+              "label": "ทีเด็ดมวย",
+              "text": "มวย"
+            }
+          },
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#000000",
+            "action": {
+              "type": "message",
+              "label": "ไลฟ์สด",
+              "text": "ไลฟ์สด"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "body": {
+          "backgroundColor": "#5B068C"
+        },
+        "footer": {
+          "backgroundColor": "#5B068C"
+        }
+      }
+    }
+  ]
+}
