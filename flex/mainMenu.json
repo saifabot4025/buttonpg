@@ -40,7 +40,7 @@
           {
             "type": "button",
             "style": "primary",
-            "color": "#FFD700",
+            "color": "#000000",
             "action": {
               "type": "uri",
               "label": "ทางเข้าเล่นหลัก",
@@ -117,7 +117,7 @@
           {
             "type": "button",
             "style": "primary",
-            "color": "#FFD700",
+            "color": "#000000",
             "action": {
               "type": "message",
               "label": "สล็อตแตกดี",
@@ -184,7 +184,7 @@
           {
             "type": "button",
             "style": "primary",
-            "color": "#FFD700",
+            "color": "#000000",
             "action": {
               "type": "message",
               "label": "ทีเด็ดบอล",
@@ -194,7 +194,7 @@
           {
             "type": "button",
             "style": "primary",
-            "color": "#FFD700",
+            "color": "#000000",
             "action": {
               "type": "message",
               "label": "หวยวันนี้",
@@ -204,7 +204,7 @@
           {
             "type": "button",
             "style": "primary",
-            "color": "#FFD700",
+            "color": "#000000",
             "action": {
               "type": "message",
               "label": "ทีเด็ดมวย",
