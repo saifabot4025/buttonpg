@@ -109,23 +109,22 @@ app.post("/webhook", express.json(), (req, res) => {
     else if (latestTips[msg]) replies.push({ type: "text", text: latestTips[msg] });
 
     replies.push({
-      type: "text",
-      text: "📲 เลือกเมนูที่ต้องการได้เลย",
-      quickReply: {
-        items: [
-          { type: "action", action: { type: "uri", label: "ทางเข้าเล่นหลัก", uri: "https://pgthai289.net/?openExternalBrowser=1" } },
-          { type: "action", action: { type: "uri", label: "สมัครสมาชิก", uri: "https://pgthai289.net/customer/register/BTAI/?openExternalBrowser=1" } },
-          { type: "action", action: { type: "message", label: "รีวิวถอนล่าสุด", text: "รีวิวถอนล่าสุด" } },
-          { type: "action", action: { type: "message", label: "สล็อตแตกดี", text: "สล็อตแตกดี" } },
-          { type: "action", action: { type: "message", label: "รีวิวค่าคอม", text: "ค่าคอมมิชชั่น" } },
-          { type: "action", action: { type: "message", label: "ทีเด็ดบอล", text: "ทีเด็ดบอล" } },
-          { type: "action", action: { type: "message", label: "ทีเด็ดหวย", text: "หวย" } },
-          { type: "action", action: { type: "message", label: "ทีเด็ดมวย", text: "มวย" } },
-          { type: "action", action: { type: "message", label: "ไลฟ์สดนำเล่น", text: "ไลฟ์สด" } }
-        ]
-      }
-    });
-
+  type: "text",
+  text: " ", // ช่องว่าง หรือใส่ emoji น่ารักๆ ก็ได้
+  quickReply: {
+    items: [
+      { type: "action", action: { type: "uri", label: "ทางเข้าเล่นหลัก", uri: "https://pgthai289.net/?openExternalBrowser=1" } },
+      { type: "action", action: { type: "uri", label: "สมัครสมาชิก", uri: "https://pgthai289.net/customer/register/BTAI/?openExternalBrowser=1" } },
+      { type: "action", action: { type: "message", label: "รีวิวถอนล่าสุด", text: "รีวิวถอนล่าสุด" } },
+      { type: "action", action: { type: "message", label: "สล็อตแตกดี", text: "สล็อตแตกดี" } },
+      { type: "action", action: { type: "message", label: "รีวิวค่าคอม", text: "ค่าคอมมิชชั่น" } },
+      { type: "action", action: { type: "message", label: "ทีเด็ดบอล", text: "ทีเด็ดบอล" } },
+      { type: "action", action: { type: "message", label: "ทีเด็ดหวย", text: "หวย" } },
+      { type: "action", action: { type: "message", label: "ทีเด็ดมวย", text: "มวย" } },
+      { type: "action", action: { type: "message", label: "ไลฟ์สดนำเล่น", text: "ไลฟ์สด" } }
+    ]
+  }
+});
     return client.replyMessage(replyToken, replies);
   }))
     .then(() => res.status(200).end())
