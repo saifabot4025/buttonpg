@@ -1,10 +1,8 @@
 // ✅ CommonJS พร้อมใช้บน Node.js และ Render
-
 const express = require("express");
 const line = require("@line/bot-sdk");
 require("dotenv").config();
 
-// === LINE CONFIG ===
 const config = {
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.LINE_CHANNEL_SECRET
@@ -14,7 +12,7 @@ const client = new line.Client({ channelAccessToken: config.channelAccessToken }
 const app = express();
 app.use(line.middleware(config));
 
-// === รายการล่าสุดที่อัปเดตได้ด้วยคำสั่งลับ ===
+// ✅ อัปเดตทีเด็ดประจำวัน
 let latestTips = {
   "ทีเด็ดบอล": "⚽️ ทีเด็ดบอลยังไม่อัปเดต",
   "หวย": "🔢 หวยยังไม่อัปเดต",
@@ -22,8 +20,19 @@ let latestTips = {
   "ไลฟ์": "📺 ไลฟ์สดยังไม่อัปเดต"
 };
 
-// === รายชื่อ + สุ่มเบอร์ + สุ่มถอน ===
-const names = [/* (ชื่อ 100 ชื่อที่คุณให้มา) */];
+// ✅ สุ่มรายชื่อและเบอร์
+const names = [
+  "สมควร", "สมร", "สายพิณ", "สมศรี", "ประสิทธิ์", "วันดี", "สุดใจ", "สายใจ", "ประหยัด", "สายชล",
+  "ศักดิ์ชัย", "สมหมาย", "พิสมัย", "จันทร์เพ็ญ", "นภาพร", "สมศักดิ์", "จรัญ", "บุญส่ง", "จันทรา", "บุญธรรม",
+  "ประสงค์", "ศิริพร", "บุญเลิศ", "ปัญญา", "กาญจนา", "วรรณา", "สุชาติ", "ประยูร", "สมปอง", "พจน์",
+  "นิภา", "เสริมศักดิ์", "จิตรลดา", "สุรีย์พร", "อรพินท์", "ประนอม", "สุนทร", "พรทิพย์", "ดวงพร", "นฤมล",
+  "ศรีนวล", "ประเสริฐ", "รุ่งทิพย์", "จันทร์จิรา", "ปรีชา", "ศุภชัย", "วิไล", "เพ็ญนภา", "อัมพร", "พงศกร",
+  "วิชาญ", "วิเชียร", "ยุพา", "ราตรี", "จิราภรณ์", "สำราญ", "สายรุ้ง", "สุวรรณ", "วราภรณ์", "สุกัญญา",
+  "อำนวย", "สุนารี", "จิตรา", "จินตนา", "พิมพ์ใจ", "กิตติ", "วาสนา", "บุญชู", "เกษม", "ระพี",
+  "ไพศาล", "ไพโรจน์", "รุ่งโรจน์", "รุ่งนภา", "นวลจันทร์", "สุทธิชัย", "อารีย์", "ภัทรพล", "จตุรงค์", "สมพร",
+  "จารุวรรณ", "สุวัจน์", "อุไรวรรณ", "ทัศนีย์", "ปัทมา", "โสภา", "นงเยาว์", "ลัดดา", "สมบูรณ์", "ลำพูน",
+  "ศักดา", "วินัย", "แสงเดือน", "ประภัสสร", "สุเมธ", "เกศรา", "ดารารัตน์", "มัณฑนา", "สายสมร", "พิศมัย"
+];
 const prefixes = ["06", "08", "09"];
 
 function randomMaskedPhone() {
@@ -45,7 +54,23 @@ function generateWithdrawList() {
 }
 
 async function generateTopGameMessage() {
-  const games = [/* รายชื่อเกม (เหมือนของคุณ) */];
+  const games = [
+    "Graffiti Rush • กราฟฟิตี้ รัช",
+    "Treasures of Aztec • สาวถ้ำ",
+    "Fortune Ox • วัวโดด",
+    "Fortune Snake • งูทอง",
+    "Fortune Rabbit • กระต่ายโชคลาภ",
+    "Lucky Neko • แมวกวัก",
+    "Fortune Mouse • หนูทอง",
+    "Dragon Hatch • รังมังกร",
+    "Wild Bounty Showdown • คาวบอย",
+    "Ways of the Qilin • กิเลน",
+    "Galaxy Miner • นักขุดอวกาศ",
+    "Incan Wonders • สิ่งมหัศจรรย์อินคา",
+    "Diner Frenzy Spins • มื้ออาหารสุดปัง",
+    "Dragon's Treasure Quest • มังกรซ่อนสมบัติ",
+    "Jack the Giant Hunter • แจ็กผู้ฆ่ายักษ์"
+  ];
   const selected = games.sort(() => 0.5 - Math.random()).slice(0, 5);
   const freeSpin = Math.floor(Math.random() * (500000 - 50000)) + 50000;
   const normal = Math.floor(Math.random() * (50000 - 5000)) + 5000;
@@ -65,53 +90,43 @@ async function generateReferralCommissionMessage() {
   return `🤝 ค่าคอมมิชชั่นแนะนำเพื่อน\n\n${lines.join("\n")}\n\n💡 ชวนเพื่อนมาเล่น รับค่าคอมทุกวัน!`;
 }
 
-// === HANDLE LINE MESSAGES ===
+// ✅ ตอบทุกข้อความ พร้อมเมนูเสมอ
 app.post("/webhook", express.json(), (req, res) => {
   Promise.all(req.body.events.map(async (event) => {
     if (event.type !== "message" || event.message.type !== "text") return;
     const msg = event.message.text.trim();
     const replyToken = event.replyToken;
 
+    let replies = [];
+
     if (msg.startsWith("/อัปเดตทีเด็ด")) latestTips["ทีเด็ดบอล"] = msg.replace("/อัปเดตทีเด็ด", "").trim();
     else if (msg.startsWith("/อัปเดตหวย")) latestTips["หวย"] = msg.replace("/อัปเดตหวย", "").trim();
     else if (msg.startsWith("/อัปเดตมวย")) latestTips["มวย"] = msg.replace("/อัปเดตมวย", "").trim();
     else if (msg.startsWith("/อัปเดตไลฟ์")) latestTips["ไลฟ์"] = msg.replace("/อัปเดตไลฟ์", "").trim();
+    else if (msg === "รีวิวถอนล่าสุด") replies.push({ type: "text", text: generateWithdrawList() });
+    else if (msg === "สล็อตแตกดี") replies.push({ type: "text", text: await generateTopGameMessage() });
+    else if (msg === "ค่าคอมมิชชั่น") replies.push({ type: "text", text: await generateReferralCommissionMessage() });
+    else if (latestTips[msg]) replies.push({ type: "text", text: latestTips[msg] });
 
-    else if (msg === "เมนู") {
-      return client.replyMessage(replyToken, [{
-        type: "text",
-        text: "📲 เลือกเมนูที่ต้องการได้เลย",
-        quickReply: {
-          items: [
-            { type: "action", action: { type: "uri", label: "ทางเข้าเล่นหลัก", uri: "https://pgthai289.net/?openExternalBrowser=1" } },
-            { type: "action", action: { type: "uri", label: "สมัครสมาชิก", uri: "https://pgthai289.net/customer/register/BTAI/?openExternalBrowser=1" } },
-            { type: "action", action: { type: "message", label: "รีวิวถอนล่าสุด", text: "รีวิวถอนล่าสุด" } },
-            { type: "action", action: { type: "message", label: "สล็อตแตกดี", text: "สล็อตแตกดี" } },
-            { type: "action", action: { type: "message", label: "รีวิวค่าคอม", text: "ค่าคอมมิชชั่น" } },
-            { type: "action", action: { type: "message", label: "ทีเด็ดบอล", text: "ทีเด็ดบอล" } },
-            { type: "action", action: { type: "message", label: "ทีเด็ดหวย", text: "หวย" } },
-            { type: "action", action: { type: "message", label: "ทีเด็ดมวย", text: "มวย" } },
-            { type: "action", action: { type: "message", label: "ไลฟ์สดนำเล่น", text: "ไลฟ์สด" } }
-          ]
-        }
-      }]);
-    }
+    replies.push({
+      type: "text",
+      text: "📲 เลือกเมนูที่ต้องการได้เลย",
+      quickReply: {
+        items: [
+          { type: "action", action: { type: "uri", label: "ทางเข้าเล่นหลัก", uri: "https://pgthai289.net/?openExternalBrowser=1" } },
+          { type: "action", action: { type: "uri", label: "สมัครสมาชิก", uri: "https://pgthai289.net/customer/register/BTAI/?openExternalBrowser=1" } },
+          { type: "action", action: { type: "message", label: "รีวิวถอนล่าสุด", text: "รีวิวถอนล่าสุด" } },
+          { type: "action", action: { type: "message", label: "สล็อตแตกดี", text: "สล็อตแตกดี" } },
+          { type: "action", action: { type: "message", label: "รีวิวค่าคอม", text: "ค่าคอมมิชชั่น" } },
+          { type: "action", action: { type: "message", label: "ทีเด็ดบอล", text: "ทีเด็ดบอล" } },
+          { type: "action", action: { type: "message", label: "ทีเด็ดหวย", text: "หวย" } },
+          { type: "action", action: { type: "message", label: "ทีเด็ดมวย", text: "มวย" } },
+          { type: "action", action: { type: "message", label: "ไลฟ์สดนำเล่น", text: "ไลฟ์สด" } }
+        ]
+      }
+    });
 
-    else if (msg === "รีวิวถอนล่าสุด") {
-      return client.replyMessage(replyToken, [{ type: "text", text: generateWithdrawList() }]);
-    }
-
-    else if (msg === "สล็อตแตกดี") {
-      return client.replyMessage(replyToken, [{ type: "text", text: await generateTopGameMessage() }]);
-    }
-
-    else if (msg === "ค่าคอมมิชชั่น") {
-      return client.replyMessage(replyToken, [{ type: "text", text: await generateReferralCommissionMessage() }]);
-    }
-
-    else if (latestTips[msg]) {
-      return client.replyMessage(replyToken, [{ type: "text", text: latestTips[msg] }]);
-    }
+    return client.replyMessage(replyToken, replies);
   }))
     .then(() => res.status(200).end())
     .catch(err => {
@@ -120,6 +135,6 @@ app.post("/webhook", express.json(), (req, res) => {
     });
 });
 
-// === START SERVER ===
+// ✅ เริ่มทำงาน
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log("✅ LINE BOT is running on port", port));
